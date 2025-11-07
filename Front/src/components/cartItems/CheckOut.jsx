@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useShopContext } from "../../context/ShopContext";
 import { useNavigate } from "react-router-dom";
-import "./CheckOut.css";
+import "./Checkout.css";
 
 const Checkout = () => {
   const { getTotalCartAmount } = useShopContext();
