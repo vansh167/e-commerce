@@ -21,7 +21,10 @@ body {
   height: auto;
   cursor: pointer;
 }
-
+.navbar-brand{
+  margin-left: -28px;
+  
+}
 /* Navigation Menu */
 .nav-list-container {
   flex: 1;

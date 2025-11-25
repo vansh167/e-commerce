@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useShopContext } from "../../context/ShopContext";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/loogo.png";
 import cart_icon from "../Assets/cart_icon.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -64,7 +64,7 @@ const Navbar = () => {
       <div className="container-fluid navbar-inner">
         {/* Logo */}
         <NavLink to="/" className="navbar-brand">
-          <img src={logo} alt="logo" style={{ width: "120px" }} />
+          <img src={logo} alt="loogo" style={{ width: "240px", height:"200px" }} />
         </NavLink>
 
         {/* Hamburger */}
