@@ -15,15 +15,17 @@ const ShopContexProvider = ({ children }) => {
   const [all_product, setAll_Product] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
+  const BASE_URL = "https://backend-om60.onrender.com";
+
   // Fetch products and cart on first load
   useEffect(() => {
-    fetch("http://localhost:4000/allproducts")
+    fetch(`${BASE_URL}/allproducts`)
       .then((res) => res.json())
       .then((data) => setAll_Product(data))
       .catch((err) => console.error("Error fetching products:", err));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/getcart", {
+      fetch(`${BASE_URL}/getcart`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -43,7 +45,7 @@ const ShopContexProvider = ({ children }) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/addtocart", {
+      fetch(`${BASE_URL}/addtocart`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -60,7 +62,7 @@ const ShopContexProvider = ({ children }) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/removefromcart", {
+      fetch(`${BASE_URL}/removefromcart`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -78,7 +80,7 @@ const ShopContexProvider = ({ children }) => {
     localStorage.removeItem("cart-items");
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/clearcart", {
+      fetch(`${BASE_URL}/clearcart`, {
         method: "POST",
         headers: {
           Accept: "application/json",

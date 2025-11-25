@@ -4,6 +4,27 @@ import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
 import { useShopContext } from "../../context/ShopContext";
 
+const BASE_URL = "https://backend-om60.onrender.com";
+
+const fixImageUrl = (url) => {
+  if (!url) return "";
+
+  // 1) If backend returned an absolute localhost URL, rewrite to deployed URL
+  let u = url.replace(/^http:\/\/localhost:4000/i, BASE_URL);
+
+  // 2) If it already is a full URL (http/https) return as-is
+  if (/^https?:\/\//i.test(u)) return u;
+
+  // 3) If it already starts with BASE_URL (avoid double prefix)
+  if (u.startsWith(BASE_URL)) return u;
+
+  // 4) If it starts with a slash, join directly
+  if (u.startsWith("/")) return `${BASE_URL}${u}`;
+
+  // 5) Otherwise treat it as a relative path
+  return `${BASE_URL}/${u}`;
+};
+
 const Productdisplay = ({ product }) => {
   const { addToCart } = useShopContext();
   const [zoom, setZoom] = useState(false);
@@ -19,14 +40,16 @@ const Productdisplay = ({ product }) => {
 
   if (!product) return <div>Loading...</div>; // Safe fallback
 
+  const fixedImage = fixImageUrl(product.image);
+
   return (
     <div className="productdisplay">
       <div className="productdisplay-left">
         <div className="productdisplay-img-list">
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
+          <img src={fixedImage} alt="" />
+          <img src={fixedImage} alt="" />
+          <img src={fixedImage} alt="" />
+          <img src={fixedImage} alt="" />
         </div>
 
         <div
@@ -37,7 +60,7 @@ const Productdisplay = ({ product }) => {
         >
           <img
             className="productdisplay-main-img"
-            src={product.image}
+            src={fixedImage}
             alt={product.name}
           />
 
@@ -45,7 +68,7 @@ const Productdisplay = ({ product }) => {
             <div
               className="zoomed-image"
               style={{
-                backgroundImage: `url(${product.image})`,
+                backgroundImage: `url(${fixedImage})`,
                 backgroundPosition: `${coords.x}% ${coords.y}%`,
               }}
             />

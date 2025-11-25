@@ -53,3 +53,52 @@
 hopcategory-loadmore:hover {
   background-color: tomato;
 }
+/* select wrap so icon aligns inside the control */
+.sort-select-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* style the native select to hide default arrow and align nicely */
+.sort-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 6px 26px 6px 8px; /* leave room for icon on right */
+  font-size: 14px;
+  cursor: pointer;
+  color: #0f1724;
+}
+
+/* hide focus outline but keep an accessible focus style */
+.sort-select:focus {
+  outline: none;
+}
+
+/* place the SVG icon on the right, vertically centered */
+.sort-icon {
+  position: absolute;
+  right: 6px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  opacity: 0.85;
+  transform-origin: center;
+  transition: transform .15s ease;
+}
+
+/* optional: rotate when select is focused to indicate open state */
+.sort-select:focus + .sort-icon,
+.sort-select:active + .sort-icon {
+  transform: rotate(180deg);
+}
+
+/* ensure container spacing is consistent with previous styles */
+.shopcategory-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

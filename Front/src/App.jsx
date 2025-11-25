@@ -12,8 +12,11 @@ import women_banner from './components/Assets/banner_women.png'
 import Checkout from './components/cartItems/CheckOut'
 import Payment from './components/cartItems/Payment'
 import TrackOrderPage from './components/UserProfile/TrackOrderPage'
+import Setting from './components/UserProfile/Setting'
 import OrderSuccessPage from './components/cartItems/OrderSuccess'
 import Admin from './pages/Admin'
+import NewCollections from './components/newCollection/NewCollections'
+import AboutEcommerce from './LearnMore/LearnMore'
 
 // import Profile from './MyProfile/MyProfile'
 
@@ -37,8 +40,12 @@ function App() {
           <Route path='/payment' element={<Payment />} />
           <Route path='/login' element={<LoginSignUp />} />
           <Route path="/orders" element={<TrackOrderPage />} />
+          <Route path="/Learn" element={<AboutEcommerce/>} />
+          <Route path="/settings" element={<Setting/>} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
           <Route path="/admin/*" element={<Admin />} />
+          <Route path="/new-collections" element={<NewCollections/>} />
+
           
         </Routes>
         <Footer />

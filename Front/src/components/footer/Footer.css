@@ -3,10 +3,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  background: #f8f8f8;
+  background-color: #dfe1f99c;
   padding: 40px 80px;
   color: #222;
-  margin-top: -40px;
+  /* margin-top: -40px; */
   font-family: Arial, sans-serif;
 }
 

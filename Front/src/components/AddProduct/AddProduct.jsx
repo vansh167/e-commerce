@@ -7,10 +7,12 @@ const AddProduct = () => {
   const [productDetails, setProductDetails] = useState({
     name: '',
     image: '',
-    category: 'women', // ✅ fixed key name
+    category: 'women',
     new_price: '',
     old_price: '',
   });
+
+  const BASE_URL = "https://backend-om60.onrender.com";
 
   const imageHandler = (e) => {
     setImage(e.target.files[0]);
@@ -24,19 +26,20 @@ const AddProduct = () => {
     console.log('Sending product:', productDetails);
     let responseData;
     let product = { ...productDetails };
-    if(!image){
-      alert("Please select an image before uploading")
+
+    if (!image) {
+      alert("Please select an image before uploading");
       return;
     }
-    // Convert price strings to numbers
+
     product.new_price = Number(product.new_price);
     product.old_price = Number(product.old_price);
 
     let formData = new FormData();
-    formData.append('product', image); // ✅ must match your backend .single("image")
+    formData.append('product', image);
 
     try {
-      const uploadResp = await fetch('http://localhost:4000/upload', {
+      const uploadResp = await fetch(`${BASE_URL}/upload`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -49,7 +52,7 @@ const AddProduct = () => {
       if (responseData.success) {
         product.image = responseData.image_url;
 
-        const addResp = await fetch('http://localhost:4000/addproduct', {
+        const addResp = await fetch(`${BASE_URL}/addproduct`, {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -63,7 +66,7 @@ const AddProduct = () => {
           addData = await addResp.json();
           if (addData.success) {
             alert('✅ Product added successfully!');
-            // ✅ Reset form
+
             setProductDetails({
               name: '',
               image: '',
@@ -76,12 +79,12 @@ const AddProduct = () => {
             alert('❌ Failed to add product');
           }
         } catch (err) {
-          console.error('Error parsing JSON response:', err);
+          console.error('Error parsing JSON:', err);
           alert('Server error. Check backend logs.');
         }
       }
     } catch (error) {
-      alert('Failed to connect to server. Is your backend running?');
+      alert('Failed to connect to server.');
       console.error(error);
     }
   };

@@ -1,0 +1,308 @@
+/* LearnMore.css - adapted to match your LearnMore / AboutEcommerce component */
+
+/* Root container */
+.about-ecom-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 40px;
+}
+
+/* Hero Section (matches .hero-ecom in JSX) */
+.hero-ecom {
+    width:79%;
+    background: linear-gradient(135deg, #2563eb 0%, #9333ea 100%);
+    color: white;
+    padding: 56px 20px;
+    border-radius: 12px;
+    margin-left:10.5%;
+    margin-top: 20px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Left and right inside hero */
+.hero-left {
+    flex: 1;
+}
+
+.hero-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    animation: fadeInDown 0.8s ease-out;
+    width: 72px;
+    height: 72px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+}
+
+.hero-left h1 {
+    margin: 6px 0 6px;
+    font-size: 2.25rem;
+}
+
+.hero-sub {
+    margin: 0;
+    color: #bfdbfe;
+    font-size: 1rem;
+    max-width: 720px;
+}
+
+/* hero right values (fast shipping, etc) */
+.hero-right {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.value {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: rgba(255,255,255,0.06);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.value h4 {
+    margin: 0 0 2px;
+    font-size: 15px;
+}
+
+.value p {
+    margin: 0;
+    color: #dbeafe;
+    font-size: 13px;
+}
+
+/* Main content wrapper (matches .about-main in JSX) */
+.about-main {
+    max-width: 1100px;
+    margin: 28px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/* Card base styles */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: fadeInUp 0.55s ease-out;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(10, 20, 40, 0.08);
+}
+
+/* Card header */
+.card-header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.section-icon {
+    color: #2563eb;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f1724;
+}
+
+/* Card text */
+.card-text {
+    font-size: 1rem;
+    color: #475569;
+    line-height: 1.7;
+}
+
+/* topics grid and badges (Top Categories) */
+.topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.topic-badge {
+    background: #f1f5f9;
+    color: #334155;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform .2s ease, background .2s ease;
+    cursor: pointer;
+}
+
+.topic-badge:hover {
+    background: #dbeafe;
+    transform: translateY(-4px);
+}
+
+/* Sourcing list */
+.sourcing-list {
+    margin-top: 10px;
+    padding-left: 18px;
+    color: #475569;
+}
+
+/* Stats grid */
+.stats-grid {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: linear-gradient(180deg,#ffffff,#fbfdff);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #eef2f7;
+    min-width: 140px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f1724;
+}
+
+.stat-label {
+    color: #64748b;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+/* Separator line */
+.separator {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #eef2f7, transparent);
+    margin: 8px 0;
+}
+
+/* Customer care */
+.contact-card .contact-grid,
+.contact-card .contact-item {
+    
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #fbfdff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #eef2f7;
+}
+
+.contact-label {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.contact-value {
+    color: #475569;
+    font-size: 13px;
+}
+
+/* Social / action buttons */
+.social-row {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #e6eef6;
+    text-decoration: none;
+    color: #0f1724;
+    font-weight: 600;
+}
+
+/* FAQ */
+.faq-grid details {
+    margin-bottom: 8px;
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: #fbfdff;
+    border: 1px solid #eef2f7;
+}
+
+.faq-grid summary {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (min-width: 900px) {
+    .about-main {
+        grid-template-columns: 1fr 360px;
+    }
+    .hero-ecom {
+        padding: 28px;
+    }
+    .hero-right { width: 360px; }
+}
+
+@media (max-width: 900px) {
+    .hero-ecom { flex-direction: column; gap: 12px; padding: 20px; margin: 16px; }
+    .hero-right { width: 100%; display:flex; gap:10px; flex-wrap:wrap; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .about-main { padding: 0 12px; grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .hero-left h1 { font-size: 1.5rem; }
+    .value p { font-size: 12px; }
+    .topic-badge { padding: 8px; font-size: 0.85rem; }
+}
+.faq-card{
+    margin-top: -53.5%;
+}

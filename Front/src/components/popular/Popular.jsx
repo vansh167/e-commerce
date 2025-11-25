@@ -1,18 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Popular.css'
-// import data_product from '../Assets/data'
 import Item from '../items/Item'
-import { useState } from 'react'
-import { useEffect } from 'react'
 
 const Popular = () => {
-const [popularProduct, setPopularProduct]=useState([]);
+  const [popularProduct, setPopularProduct] = useState([]);
 
-useEffect(()=>{
-  fetch('http://localhost:4000/productinwomen')
-  .then((response)=>response.json())
-  .then((data)=>setPopularProduct(data));
-},[])
+  const BASE_URL = "https://backend-om60.onrender.com";
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/productinwomen`)
+      .then((response) => response.json())
+      .then((data) => setPopularProduct(data));
+  }, []);
 
   return (
     <>
@@ -21,8 +20,17 @@ useEffect(()=>{
         <hr />
         <div className="popular-item">
           {
-          popularProduct.map((item, i) => {
-              return <Item key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} />
+            popularProduct.map((item, i) => {
+              return (
+                <Item 
+                  key={i} 
+                  id={item.id} 
+                  name={item.name} 
+                  image={item.image} 
+                  new_price={item.new_price} 
+                  old_price={item.old_price} 
+                />
+              );
             })
           }
         </div>

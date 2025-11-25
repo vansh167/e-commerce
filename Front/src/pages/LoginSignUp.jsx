@@ -15,6 +15,7 @@ const LoginSignUp = () => {
   });
 
   const navigate = useNavigate();
+  const BASE_URL = 'https://backend-om60.onrender.com';
 
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,10 +35,10 @@ const LoginSignUp = () => {
     // We'll still call your backend and then set local flags for admin detection.
     let responseData;
     try {
-      const res = await fetch('http://localhost:4000/login', {
+      const res = await fetch(`${BASE_URL}/login`, {
         method: 'POST',
         headers: {
-          Accept: 'application/form-data',
+          Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
@@ -88,10 +89,10 @@ const LoginSignUp = () => {
   const signup = async () => {
     let responseData;
     try {
-      const res = await fetch('http://localhost:4000/signup', {
+      const res = await fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
-          Accept: 'application/form-data',
+          Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),

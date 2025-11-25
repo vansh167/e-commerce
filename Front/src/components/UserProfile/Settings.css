@@ -1,0 +1,320 @@
+/* Settings.css
+   Responsive, minimal, and visually pleasant styles for the Settings page.
+   Works together with Bootstrap already in your project.
+*/
+
+/* ---- Root / container ---- */
+.settings-container {
+  display: flex;
+  justify-content: center;
+  padding: 36px 18px;
+  background: #f6f8fb;
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Card */
+.settings-card {
+  width: 100%;                /* <-- FULL WIDTH ADDED */
+  max-width: 900px;           /* <-- Prevents stretching on big screens */
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(20, 24, 40, 0.06);
+  box-sizing: border-box;
+}
+
+/* Title */
+.settings-card h2 {
+  margin: 0 0 18px 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f1724;
+}
+
+/* ---- Top row: avatar + profile fields ---- */
+.settings-row {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Avatar column */
+.avatar-column {
+  width: 220px;
+  text-align: center;
+  flex: 0 0 220px;
+}
+
+.settings-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #eef2f7;
+  box-shadow: 0 6px 18px rgba(20, 24, 40, 0.06);
+  display: inline-block;
+}
+
+.avatar-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.avatar-actions .btn {
+  font-size: 13px;
+  padding: 7px 12px;
+}
+
+/* small helper text */
+.muted {
+  display: block;
+  color: #6b7280;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* Profile column (main form) */
+.profile-column {
+  flex: 1 1 0;
+  min-width: 200px;
+}
+
+.profile-column label {
+  display: block;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.profile-column input {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 0;
+  border-radius: 8px;
+  border: 1px solid #e6eef6;
+  background: #fff;
+  box-sizing: border-box;
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+.profile-column input:focus {
+  outline: none;
+  border-color: #7aa7ff;
+  box-shadow: 0 4px 14px rgba(34, 119, 255, 0.08);
+}
+
+/* profile actions */
+.profile-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.profile-msg {
+  color: #198754;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+/* small metadata row */
+.meta-row {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  color: #6b7280;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+/* ---- password section ---- */
+.password-section {
+  margin-top: 20px;
+}
+
+.password-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.pw-form input {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid #e6eef6;
+  box-sizing: border-box;
+}
+
+.pw-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.pw-msg {
+  color: #b91c1c;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ---- addresses ---- */
+.addresses-section {
+  margin-top: 18px;
+}
+
+.addresses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.address-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #eef2f7;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fbfdff;
+}
+
+.address-line {
+  color: #374151;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* add address inputs */
+.address-add {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.address-add input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e6eef6;
+  background: #fff;
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+/* ---- orders list ---- */
+.orders-section {
+  margin-top: 18px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #f8fafc;
+  border: 1px solid #eef2f7;
+}
+
+/* ---- danger actions ---- */
+.danger-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ---- responsive tweaks ---- */
+@media (max-width: 900px) {
+  .settings-card {
+    padding: 22px;
+    max-width: 100%;
+  }
+
+  .avatar-column {
+    width: 160px;
+    flex: 0 0 160px;
+  }
+
+  .settings-avatar {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media (max-width: 700px) {
+  .settings-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .avatar-column {
+    width: 100%;
+    text-align: center;
+    flex: 0 0 auto;
+  }
+
+  .profile-column {
+    width: 100%;
+  }
+
+  .address-add {
+    flex-direction: column;
+  }
+
+  .profile-actions {
+    justify-content: flex-start;
+  }
+
+  .meta-row {
+    flex-direction: column;
+  }
+
+  .danger-actions {
+    justify-content: center;
+  }
+
+  .settings-card {
+    padding: 18px;
+    border-radius: 10px;
+  }
+}
+
+/* very small screens */
+@media (max-width: 420px) {
+  .settings-card h2 {
+    font-size: 18px;
+  }
+
+  .avatar-actions .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .profile-column label {
+    font-size: 13px;
+  }
+
+  .profile-column input {
+    padding: 9px 10px;
+  }
+}
