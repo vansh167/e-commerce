@@ -348,3 +348,72 @@ body {
   background-color: #7CB9E8;
   border-radius: 2px;
 }
+/* ================================
+   MOBILE ONLY (Max-width: 480px)
+   ================================ */
+@media (max-width: 480px) {
+
+  /* Navbar container */
+  .navbar {
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  /* Logo */
+  .navbar-brand img {
+    width: 120px !important;
+    height: auto !important;
+  }
+
+  /* Nav items (inside bootstrap collapse) */
+  .navbar-nav {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .nav-link {
+    font-size: 16px;
+    padding: 8px 0;
+  }
+
+  /* Cart Icon */
+  .navbar .position-relative img {
+    height: 22px !important;
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 2px 5px;
+  }
+
+  /* User avatar */
+  .navbar-user {
+    width: 35px !important;
+    height: 35px !important;
+    margin-right: 5px;
+  }
+
+  /* Dropdown menu */
+  .dropdown-menu {
+    min-width: 160px !important;
+  }
+
+  .dropdown-item {
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+  }
+
+  /* Hamburger alignment fix */
+  .navbar-toggler {
+    padding: 3px 6px;
+    border: none;
+  }
+
+  /* Center menu when opened */
+  #navbarNav {
+    text-align: center;
+  }
+}
+
