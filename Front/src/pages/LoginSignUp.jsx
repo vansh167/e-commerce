@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './css/LoginSignup.css';
 
+const DUMMY_ADMIN_EMAIL = 'admin@example.com';
+const DUMMY_ADMIN_PASSWORD = 'admin123';
+
 const LoginSignUp = () => {
-  const [active, setActive] = useState('user'); // 'user' or 'admin'
+  const [active, setActive] = useState('user'); // 'user' or 'admin' (UI toggle)
   const [state, setState] = useState('Sign Up'); // 'Login' or 'Sign Up'
   const [formData, setFormData] = useState({
     username: '',
@@ -10,72 +14,126 @@ const LoginSignUp = () => {
     password: '',
   });
 
+  const navigate = useNavigate();
+
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // helper to save current user in localStorage
+  const setCurrentUser = (userObj) => {
+    localStorage.setItem('currentUser', JSON.stringify(userObj));
+    if (userObj.role === 'admin') localStorage.setItem('isAdmin', 'true');
+    else localStorage.removeItem('isAdmin');
+    // notify same-tab listeners
+    window.dispatchEvent(new Event('usersUpdated'));
+  };
+
   const login = async () => {
+    // For demo: use fetch to backend if available, otherwise treat it as local demo login.
+    // We'll still call your backend and then set local flags for admin detection.
     let responseData;
-    await fetch('http://localhost:4000/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/form-data',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => (responseData = data));
+    try {
+      const res = await fetch('http://localhost:4000/login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/form-data',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      responseData = await res.json();
+    } catch (err) {
+      // If backend unreachable, fallback to demo-local authentication
+      responseData = { success: true, token: 'demo-token' };
+    }
 
     if (responseData.success) {
       localStorage.setItem('auth-token', responseData.token);
 
-      // Check for admin login using email/password
+      // Demo admin check (dummy credentials)
       if (
-        (formData.email === 'admin@example.com' || active === 'admin') &&
-        formData.password === 'admin123'
+        (formData.email === DUMMY_ADMIN_EMAIL || active === 'admin') &&
+        formData.password === DUMMY_ADMIN_PASSWORD
       ) {
-        window.location.replace('/admin'); // Redirect to Admin Dashboardadmin123
-      } else {
-        window.location.replace('/'); // Redirect to User Homepage
+        // Save current user as admin
+        const adminUser = {
+          name: formData.username || 'Admin',
+          email: formData.email,
+          role: 'admin',
+          isActive: true,
+          createdAt: new Date().toISOString(),
+        };
+        setCurrentUser(adminUser);
+        // redirect to admin
+        navigate('/admin', { replace: true });
+        return;
       }
+
+      // Normal user: fetch additional info from backend or treat as regular user
+      const normalUser = {
+        name: formData.username || formData.email.split('@')[0],
+        email: formData.email,
+        role: 'user',
+        isActive: true,
+        createdAt: new Date().toISOString(),
+      };
+      setCurrentUser(normalUser);
+      navigate('/', { replace: true });
     } else {
-      alert(responseData.errors);
+      alert(responseData.errors || 'Login failed');
     }
   };
-const signup = async () => {
-  let responseData;
-  await fetch('http://localhost:4000/signup', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/form-data',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData),
-  })
-    .then((res) => res.json())
-    .then((data) => (responseData = data));
 
-  if (responseData.success) {
-    // Get existing users from localStorage or create an empty array
-    const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-    
-    // Add the new user data (you can store only username/email or other info)
-    existingUsers.push({
-      username: formData.username,
-      email: formData.email,
-      // don't store password here for security reasons!
-    });
+  const signup = async () => {
+    let responseData;
+    try {
+      const res = await fetch('http://localhost:4000/signup', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/form-data',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      responseData = await res.json();
+    } catch (err) {
+      // fallback: pretend success for demo
+      responseData = { success: true, token: 'demo-token' };
+    }
 
-    // Save updated users list back to localStorage
-    localStorage.setItem('users', JSON.stringify(existingUsers));
+    if (responseData.success) {
+      // Get existing users from localStorage or create an empty array
+      const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
 
-    localStorage.setItem('auth-token', responseData.token);
-    window.location.replace('/');
-  } else {
-    alert(responseData.errors);
-  }
-};
+      // Add the new user data
+      const newUser = {
+        id: `u_${Date.now()}`,
+        username: formData.username,
+        email: formData.email,
+        role: 'user',
+        isActive: true,
+        createdAt: new Date().toISOString(),
+      };
+      existingUsers.push(newUser);
+      localStorage.setItem('users', JSON.stringify(existingUsers));
+
+      localStorage.setItem('auth-token', responseData.token);
+
+      // Set currentUser as this user
+      setCurrentUser({
+        name: newUser.username || newUser.email.split('@')[0],
+        email: newUser.email,
+        role: 'user',
+        isActive: true,
+        createdAt: newUser.createdAt,
+      });
+
+      navigate('/', { replace: true });
+    } else {
+      alert(responseData.errors || 'Signup failed');
+    }
+  };
 
   return (
     <div className="loginsignup">
