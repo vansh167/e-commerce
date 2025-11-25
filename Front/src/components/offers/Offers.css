@@ -6,7 +6,7 @@
 /* Main Banner Container */
 #sm-banner {
   display: flex;
-  flex-wrap: wrap; /* Wrap banners on smaller screens */
+  flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
   justify-content: center;
@@ -25,16 +25,6 @@
   height: 50vh;
   background-size: cover;
   background-position: center;
-}
-
-/* First Banner Image */
-.banner-box {
-  background-image: url(./src//assets/features/b10.jpg);
-}
-
-/* Second Banner Image */
-.banner-box2 {
-  background-image: url(./src//assets/features/b17.jpg);
 }
 
 /* Headings */
@@ -71,18 +61,14 @@
   margin-top: 10px;
 }
 
-#sm-banner button:hover {
-  background-color: white;
-  color: #333;
-}
-
+#sm-banner button:hover,
 .banner-box button:hover,
 .banner-box2 button:hover {
   background-color: white;
   color: #333;
 }
 
-/* 🔁 Responsive Design */
+/* Responsive Design */
 @media (max-width: 768px) {
   .banner-box,
   .banner-box2 {
