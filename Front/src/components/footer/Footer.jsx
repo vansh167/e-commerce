@@ -1,6 +1,8 @@
 import React from "react";
 import "./Footer.css";
-
+import appImg from "../../image/app.jpg";
+import googleImg from "../../image/play.jpg"; 
+import payImg from "../../image/pay.png";
 const Footer = () => {
   return (
     <>
@@ -55,11 +57,12 @@ const Footer = () => {
           <h4>Install App</h4>
           <p>From App Store or Google Play</p>
           <div className="row">
-            <img src="/image/app.jpg" alt="App Store" />
-            <img src="/image/play.jpg" alt="Google Play" />
+            <img src={appImg} alt="App Store" />
+            <img src={googleImg} alt="Google Play" />
           </div>
           <p>Secured Payment Gateways</p>
-          <img src="/image/pay.png" alt="Payment Gateways" />
+          <img src={payImg} alt="Payment Gateways" />
+
         </div>
 
         {/* Copyright */}

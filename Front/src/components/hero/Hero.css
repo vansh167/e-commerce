@@ -1,6 +1,5 @@
 .hero {
   height: 90vh;
-  background-image: url("./src//assets/features/hero4.png"); /* make sure path is correct */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top 19% right 10%;
@@ -46,7 +45,6 @@
 
 /* Hero Button */
 .hero-btn {
-  background-image: url("../image/button.png"); 
   background-repeat: no-repeat;
   background-size: contain;
   color: #577065;
