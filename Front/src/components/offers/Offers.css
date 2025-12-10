@@ -25,6 +25,12 @@
   height: 50vh;
   background-size: cover;
   background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.banner-box:hover,
+.banner-box2:hover {
+  transform: translateY(-5px);
 }
 
 /* Headings */
@@ -37,6 +43,7 @@
 .banner-box h2,
 .banner-box2 h2 {
   margin-bottom: 20px;
+  font-size: 28px;
 }
 
 /* Span Text */
@@ -44,6 +51,7 @@
 .banner-box2 span {
   display: block;
   margin-bottom: 20px;
+  font-size: 16px;
 }
 
 /* Buttons */
@@ -61,15 +69,28 @@
   margin-top: 10px;
 }
 
-#sm-banner button:hover,
 .banner-box button:hover,
-.banner-box2 button:hover {
+.banner-box2 button:hover,
+#sm-banner button:hover {
   background-color: white;
   color: #333;
 }
 
-/* Responsive Design */
+/* Responsive Design - Tablets & Mobiles */
+@media (max-width: 1024px) {
+  .banner-box,
+  .banner-box2 {
+    width: 45%; /* 2 in a row */
+    height: 45vh;
+  }
+}
+
 @media (max-width: 768px) {
+  #sm-banner {
+    flex-direction: column;
+    padding: 10px;
+  }
+
   .banner-box,
   .banner-box2 {
     width: 100%;
@@ -77,14 +98,9 @@
     padding: 15px;
   }
 
-  #sm-banner {
-    flex-direction: column;
-    padding: 10px;
-  }
-
   .banner-box h2,
   .banner-box2 h2 {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .banner-box h4,
@@ -119,5 +135,12 @@
   .banner-box span,
   .banner-box2 span {
     font-size: 13px;
+  }
+
+  .banner-box button,
+  .banner-box2 button {
+    width: 80px;
+    height: 26px;
+    font-size: 12px;
   }
 }
