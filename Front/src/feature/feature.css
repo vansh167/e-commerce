@@ -1,42 +1,51 @@
 /* Feature section container */
 #feature {
   display: flex;
-  flex-wrap: wrap;          /* allow wrapping on smaller screens */
-  justify-content: center;
-  gap: 10px;                /* space between boxes */
+  gap: 15px;
   padding: 40px 20px;
   background: #fff;
+  flex-wrap: nowrap;       /* keep in one row for mobile */
+  overflow-x: auto;        /* allow horizontal scroll */
+  -webkit-overflow-scrolling: touch; /* smooth scroll for iOS */
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar (optional) */
+#feature::-webkit-scrollbar {
+  display: none;
 }
 
 /* Feature box */
 #feature .fe-box {
-  width: 180px;
+  flex: 0 0 auto; /* fixed width */
+  width: 160px;
   text-align: center;
-  padding: 25px 15px;
+  padding: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   border: 1px solid #cce7de;
-  margin: 10px;
   border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   background: #fff;
-  flex: 1 1 150px;   /* flexible width for responsiveness */
-  max-width: 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Title on top */
+#feature .fe-box h6 {
+  display: block;
+  margin-top: 9px;
+  font-size: 14px;
+  color: #088178;
+  background: #f0deeada;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+/* Image below */
 #feature .fe-box img {
   width: 100%;
   max-width: 120px;
-  margin-bottom: 10px;
-}
-
-#feature .fe-box h6 {
-  display: inline-block;
-  padding: 9px 8px 6px 8px;
-  color: #088178;
-  line-height: 1;
-  border-radius: 4px;
-  background-color: #f0deeada;
-  font-size: 14px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Hover effect */
@@ -45,32 +54,16 @@
   box-shadow: 0 12px 25px rgba(0,0,0,0.1);
 }
 
-/* 📱 Responsive Breakpoints */
-@media (max-width: 1024px) {
+/* Desktop: wrap normally */
+@media (min-width: 769px) {
   #feature {
-    gap: 15px;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    justify-content: center;
   }
-  #feature .fe-box {
-    width: 160px;
-  }
-}
 
-@media (max-width: 768px) {
-  #feature {
-    justify-content: space-around;
-  }
   #feature .fe-box {
-    width: 45%;    /* two per row */
-    max-width: none;
-  }
-}
-
-@media (max-width: 480px) {
-  #feature {
-    flex-direction: column;
-    align-items: center;
-  }
-  #feature .fe-box {
-    width: 80%;   /* full width on small screens */
+    flex: 1 1 150px;
+    max-width: 200px;
   }
 }
