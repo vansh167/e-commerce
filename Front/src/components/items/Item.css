@@ -1,63 +1,84 @@
-/* Container for all items */
+/* Reset helpful defaults just for this component */
+.item-container,
+.item-container * {
+  box-sizing: border-box;
+}
+
+/* Desktop / default: responsive grid */
 .item-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Creates space between products */
-  justify-content: center; /* Center items horizontally */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 12px;
+  justify-items: center;
+  align-items: stretch;
 }
 
-/* Individual product item card */
+/* Card */
 .item {
-  text-align: center;
-  flex: 1 1 250px; /* Responsive width: min 250px, grow/shrink as needed */
-  max-width: 300px;
-  width: 270px;
-  padding: 10px 12px;
-  border: 1px solid #cce7d0;
-  /* margin-left: 40px; */
-  border-radius: 25px;
+  width: 100%;           /* let grid column control width */
+  max-width: 320px;      /* optional cap on wider screens */
   background-color: #eff4f4;
-  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease;
+  padding: 12px;
+  border-radius: 18px;
+  border: 1px solid #cce7d0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Image wrapper with overflow handling */
+/* image container */
 .item-image-container {
+  width: 100%;
   overflow: hidden;
   border-radius: 10px;
 }
 
-/* Product image with hover zoom effect */
+/* image */
 .item-image-container img {
   width: 100%;
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-.item-image-container img:hover {
-  transform: scale(1.2);
+.item:hover img {
+  transform: scale(1.06);
 }
 
-/* Product name */
-.item-name {
-  font-size: 16px;
-  margin: 10px 0;
+/* content */
+.item-name { font-size: 16px; margin: 10px 0; }
+.item-prices { display:flex; gap:10px; align-items:center; }
+.new-price { color: green; font-weight:700; }
+.old-price { color:#888; text-decoration:line-through; }
+
+/* ------------------------------
+   CRUCIAL: Force 2 columns on mobile
+   ------------------------------ */
+@media (max-width: 600px) {
+  .item-container {
+    grid-template-columns: repeat(2, 1fr) !important; /* 2 columns exactly */
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .item {
+    max-width: none !important; /* allow full cell width */
+    width: 100% !important;
+    border-radius: 14px;
+    padding: 10px;
+  }
+
+  .item-image-container img {
+    height: auto;
+    object-fit: cover;
+  }
 }
 
-/* Price section */
-.item-prices {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.new-price {
-  color: green;
-  font-weight: bold;
-}
-
-.old-price {
-  color: #888;
-  text-decoration: line-through;
+/* optional: tweak at very small phones */
+@media (max-width: 360px) {
+  .item-container { gap: 8px; }
+  .item-name { font-size: 14px; }
+  .item-prices { gap: 6px; }
 }
