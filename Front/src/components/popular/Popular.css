@@ -1,4 +1,3 @@
-
 .popular {
   display: flex;
   flex-direction: column;
@@ -10,25 +9,27 @@
 
 .popular h1 {
   color: #171717;
-  font-size: 48px;
+  font-size: clamp(2rem, 5vw, 3rem); /* Responsive font scaling */
   font-weight: 700;
   text-align: center;
   letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
 .popular hr {
   width: 200px;
   height: 6px;
   border-radius: 10px;
-  background: linear-gradient(90deg, #ff6a00, #ee0979); /* gradient line */
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
   border: none;
+  margin-bottom: 30px;
 }
 
+/* Grid layout */
 .popular-item {
- 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 35px;
+  grid-template-columns: repeat(4, 1fr); /* 4 items on large screens */
+  gap: 25px;
   width: 100%;
   max-width: 1300px;
   padding: 0 20px;
@@ -51,7 +52,7 @@
   box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
-/* Image container with hover zoom */
+/* Image container */
 .popular-item img {
   width: 100%;
   height: auto;
@@ -60,17 +61,17 @@
 }
 
 .popular-item > *:hover img {
-  transform: scale(1.02); /* image zoom */
+  transform: scale(1.02);
 }
 
-/* Product details section */
+/* Product details */
 .popular-item .details {
   padding: 15px;
   text-align: center;
 }
 
 .popular-item .details h3 {
-  font-size: 18px;
+  font-size: 1.1rem;
   color: #333;
   font-weight: 600;
   margin-bottom: 8px;
@@ -84,25 +85,45 @@
 
 .popular-item .details .item-price-new {
   color: #374151;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 700;
 }
 
 .popular-item .details .item-price--old {
   color: #8c8c8c;
-  font-size: 16px;
+  font-size: 0.9rem;
   text-decoration: line-through;
 }
 
 /* Responsive breakpoints */
+
+/* Tablets / small laptops */
 @media (max-width: 1024px) {
   .popular-item {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 600px) {
+/* Mobile: 2 items per row */
+@media (max-width: 768px) {
   .popular-item {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
   }
-} 
+
+  .popular h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+}
+
+/* Small phones: keep 2 items per row */
+@media (max-width: 480px) {
+  .popular-item {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .popular h1 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+}
