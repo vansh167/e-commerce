@@ -1,51 +1,39 @@
 .hero {
-  height: 90vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top 19% right 10%;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-size: cover;
+  background-position: center;
+  padding: 0 5%;
 }
 
-/* Inner container for spacing */
-.container {
-  margin-top: 2px;
-}
-
-/* Headings & text */
+/* Text Styling */
 .hero h3 {
-  margin-left: 10%;
-  font-weight: 560;
+  font-weight: 500;
   font-size: 20px;
   color: #333;
 }
 
-.hero h2 {
-  margin-left: 10%;
-  margin-top: 20px;
-  font-size: 60px;
-  font-weight: 500;
-  color: #000;
-}
-
+.hero h2,
 .hero h1 {
-  margin-left: 10%;
-  font-size: 60px;
-  font-weight: 500;
-  color: #000;
+  font-size: 58px;
+  font-weight: 600;
+  color: #111;
+  line-height: 1.1;
 }
 
 .hero p {
+  margin-top: 12px;
   font-size: 18px;
   color: #465b52;
-  margin-left: 11%;
-  margin-top: 10px;
+  max-width: 480px;
 }
 
-/* Hero Button */
+/* CTA Button */
 .hero-btn {
   background-repeat: no-repeat;
+  text-decoration: none;
   background-size: contain;
   color: #577065;
   background-color: transparent;
@@ -54,6 +42,46 @@
   cursor: pointer;
   font-weight: 700;
   font-size: 15px;
-  margin-left: 12%;
+  /* margin-left: 8%; */
   margin-top: 2%;
+}
+
+/* ---------------- MOBILE RESPONSIVE ---------------- */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 10% 5% 20% 5%;
+  }
+
+  .hero h2,
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero p {
+    font-size: 17.3px;
+    color: rgb(242, 6, 6);
+    text-decoration:underline;
+  }
+
+  .hero-btn {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h2,
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero h3 {
+    font-size: 29px;
+    margin-left: -5%;
+  }
+
+  .hero-btn {
+    width: fit-content;
+  }
 }
