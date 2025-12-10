@@ -1,43 +1,45 @@
+/* Container for the new collections section */
 .new-collections {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   padding: 40px 0;
   background: #f9f9f9;
-  margin-top: -10px;
   margin-bottom: 100px;
 }
 
+/* Heading */
 .new-collections h1 {
-  color: #171717;
   font-size: 48px;
   font-weight: 700;
+  color: #171717;
   text-align: center;
   letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
+/* Gradient line under h1 */
 .new-collections hr {
   width: 200px;
   height: 6px;
   border-radius: 10px;
-  background: linear-gradient(90deg, #ff6a00, #ee0979); /* gradient line */
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
   border: none;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
 
-/* Grid layout for items */
+/* Grid for the items */
 .collections {
-  margin-top: 50px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* Desktop: 4 items */
   gap: 35px;
   width: 100%;
   max-width: 1300px;
   padding: 0 20px;
 }
 
-/* Card style */
+/* Individual item card */
 .collections > * {
   background: #fff;
   border-radius: 12px;
@@ -50,62 +52,73 @@
 }
 
 .collections > *:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
-/* Image hover zoom */
 .collections img {
   width: 100%;
   height: auto;
-  display: block;
-  transition: transform 0.4s ease;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .collections > *:hover img {
   transform: scale(1.02);
 }
 
-/* Item details */
-.collections .details {
-  padding: 15px;
+.details {
+  padding: 12px;
   text-align: center;
 }
 
-.collections .details h3 {
+.details h3 {
   font-size: 18px;
   color: #333;
   font-weight: 600;
   margin-bottom: 8px;
 }
 
-.collections .details .item-prices {
+.item-prices {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-.collections .details .item-price-new {
+.item-price-new {
   color: #374151;
   font-size: 18px;
   font-weight: 700;
 }
 
-.collections .details .item-price-old {
+.item-price-old {
   color: #8c8c8c;
   font-size: 16px;
   text-decoration: line-through;
 }
 
-/* Responsive breakpoints */
-@media (max-width: 1024px) {
+/* ----------------- RESPONSIVE ----------------- */
+
+/* Mobile: 2 items per row */
+@media (max-width: 600px) {
   .collections {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px;
+  }
+
+  .new-collections h1 {
+    font-size: 32px; /* smaller heading on mobile */
   }
 }
 
-@media (max-width: 600px) {
+/* Very small screens (optional) */
+@media (max-width: 360px) {
   .collections {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .new-collections h1 {
+    font-size: 28px;
   }
 }
